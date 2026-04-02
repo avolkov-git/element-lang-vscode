@@ -1,0 +1,155 @@
+{
+  "name": "XBSL",
+  "scopeName": "source.xbsl",
+  "patterns": [
+    {
+      "include": "#comments"
+    },
+    {
+      "include": "#strings"
+    },
+    {
+      "include": "#keywords"
+    },
+    {
+      "include": "#declarations"
+    },
+    {
+      "include": "#types"
+    },
+    {
+      "include": "#constants"
+    },
+    {
+      "include": "#numbers"
+    },
+    {
+      "include": "#operators"
+    }
+  ],
+  "repository": {
+    "comments": {
+      "patterns": [
+        {
+          "name": "comment.line.double-slash.xbsl",
+          "match": "//.*$"
+        },
+        {
+          "name": "comment.block.xbsl",
+          "begin": "/\\*",
+          "end": "\\*/"
+        }
+      ]
+    },
+    "strings": {
+      "patterns": [
+        {
+          "name": "string.quoted.double.xbsl",
+          "begin": "\"",
+          "end": "\"",
+          "patterns": [
+            {
+              "name": "constant.character.escape.xbsl",
+              "match": "\\\\."
+            }
+          ]
+        },
+        {
+          "name": "string.quoted.single.xbsl",
+          "begin": "'",
+          "end": "'",
+          "patterns": [
+            {
+              "name": "constant.character.escape.xbsl",
+              "match": "\\\\."
+            }
+          ]
+        }
+      ]
+    },
+    "keywords": {
+      "patterns": [
+        {
+          "name": "keyword.control.xbsl",
+          "match": "\\b(Если|Иначе|ИначеЕсли|Тогда|Для|Каждого|Из|Пока|Цикл|Прервать|Продолжить|Возврат|Попытка|Исключение|КонецПопытки)\\b"
+        },
+        {
+          "name": "storage.modifier.xbsl",
+          "match": "\\b(Экспорт|Знач|Перем|Асинх|Статический)\\b"
+        },
+        {
+          "name": "keyword.declaration.xbsl",
+          "match": "\\b(Функция|Процедура|Перем|Новый|Неопределено)\\b"
+        }
+      ]
+    },
+    "declarations": {
+      "patterns": [
+        {
+          "name": "meta.function.xbsl",
+          "match": "\\b(Функция|Процедура)\\s+([A-Za-zА-Яа-я_][A-Za-zА-Яа-я0-9_]*)\\b",
+          "captures": {
+            "1": {
+              "name": "keyword.declaration.function.xbsl"
+            },
+            "2": {
+              "name": "entity.name.function.xbsl"
+            }
+          }
+        },
+        {
+          "name": "meta.type.definition.xbsl",
+          "match": "\\b(Перечисление|Структура|Тип)\\s+([A-Za-zА-Яа-я_][A-Za-zА-Яа-я0-9_]*)\\b",
+          "captures": {
+            "1": {
+              "name": "keyword.declaration.type.xbsl"
+            },
+            "2": {
+              "name": "entity.name.type.xbsl"
+            }
+          }
+        }
+      ]
+    },
+    "types": {
+      "patterns": [
+        {
+          "name": "support.type.primitive.xbsl",
+          "match": "\\b(Строка|Число|Булево|Дата|Массив|Структура|Соответствие)\\b"
+        },
+        {
+          "name": "entity.name.type.xbsl",
+          "match": "\\b[А-ЯA-Z][A-Za-zА-Яа-я0-9_]*\\b"
+        }
+      ]
+    },
+    "constants": {
+      "patterns": [
+        {
+          "name": "constant.language.xbsl",
+          "match": "\\b(Истина|Ложь|Неопределено|Null)\\b"
+        },
+        {
+          "name": "constant.other.uppercase.xbsl",
+          "match": "\\b[А-ЯA-Z][А-ЯA-Z0-9_]+\\b"
+        }
+      ]
+    },
+    "numbers": {
+      "patterns": [
+        {
+          "name": "constant.numeric.xbsl",
+          "match": "\\b(?:0x[0-9A-Fa-f_]+|0b[01_]+|\\d+(?:_\\d+)*(?:\\.\\d+(?:_\\d+)*)?)\\b"
+        }
+      ]
+    },
+    "operators": {
+      "patterns": [
+        {
+          "name": "keyword.operator.xbsl",
+          "match": "(?:[-+/*%=!<>|&^~?:]+|\\b(И|Или|Не)\\b)"
+        }
+      ]
+    }
+  }
+}

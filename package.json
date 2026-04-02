@@ -1,0 +1,37 @@
+{
+  "name": "1c-element",
+  "displayName": "1C:Element Language Support",
+  "description": "Syntax highlighting and basic language configuration for 1C:Element XBSL files.",
+  "version": "0.0.1",
+  "publisher": "local",
+  "license": "UNLICENSED",
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "categories": [
+    "Programming Languages"
+  ],
+  "contributes": {
+    "languages": [
+      {
+        "id": "xbsl",
+        "aliases": [
+          "XBSL",
+          "1C:Element",
+          "1c-element"
+        ],
+        "extensions": [
+          ".xbsl"
+        ],
+        "configuration": "./language-configuration.json"
+      }
+    ],
+    "grammars": [
+      {
+        "language": "xbsl",
+        "scopeName": "source.xbsl",
+        "path": "./syntaxes/xbsl.tmLanguage.json"
+      }
+    ]
+  }
+}
