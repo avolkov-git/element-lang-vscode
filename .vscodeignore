@@ -1,0 +1,8 @@
+.git/**
+.github/**
+.local-docs/**
+.local-backlog/**
+examples/**
+*.vsix
+.editorconfig
+**/.DS_Store

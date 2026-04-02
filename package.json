@@ -2,10 +2,21 @@
   "name": "1c-element",
   "displayName": "1C:Element Language Support",
   "description": "Syntax highlighting and basic language configuration for 1C:Element XBSL files.",
-  "version": "0.0.1",
-  "publisher": "local",
+  "version": "0.0.2",
+  "publisher": "avolkov-git",
   "license": "UNLICENSED",
   "main": "./extension.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/avolkov-git/element-lang-vscode.git"
+  },
+  "homepage": "https://github.com/avolkov-git/element-lang-vscode",
+  "bugs": {
+    "url": "https://github.com/avolkov-git/element-lang-vscode/issues"
+  },
+  "scripts": {
+    "package:vsix": "npx @vscode/vsce package"
+  },
   "engines": {
     "vscode": "^1.85.0"
   },

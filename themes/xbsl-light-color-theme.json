@@ -50,11 +50,26 @@
     },
     {
       "scope": [
-        "variable.other.definition.xbsl",
-        "constant.language.xbsl"
+        "variable.other.definition.xbsl"
       ],
       "settings": {
         "foreground": "#001080"
+      }
+    },
+    {
+      "scope": [
+        "constant.language.xbsl"
+      ],
+      "settings": {
+        "foreground": "#0000FF"
+      }
+    },
+    {
+      "scope": [
+        "constant.language.boolean.xbsl"
+      ],
+      "settings": {
+        "foreground": "#0000FF"
       }
     },
     {
@@ -100,6 +115,14 @@
       ],
       "settings": {
         "foreground": "#138A3B"
+      }
+    },
+    {
+      "scope": [
+        "constant.numeric.duration.xbsl"
+      ],
+      "settings": {
+        "foreground": "#0B8658"
       }
     },
     {

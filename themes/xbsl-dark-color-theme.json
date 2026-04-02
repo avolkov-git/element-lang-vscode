@@ -51,7 +51,8 @@
     {
       "scope": [
         "variable.other.definition.xbsl",
-        "constant.language.xbsl"
+        "constant.language.xbsl",
+        "constant.language.boolean.xbsl"
       ],
       "settings": {
         "foreground": "#9CCFFA"
@@ -96,7 +97,8 @@
     },
     {
       "scope": [
-        "constant.numeric.xbsl"
+        "constant.numeric.xbsl",
+        "constant.numeric.duration.xbsl"
       ],
       "settings": {
         "foreground": "#9FCB8F"

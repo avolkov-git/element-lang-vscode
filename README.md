@@ -1,39 +1,39 @@
 # element-lang-vscode
 
-Расширение подсветки синтаксиса VS Code для языка 1С:Элемент (`.xbsl`).
-
-## Что уже есть
-
-- TextMate grammar в `syntaxes/xbsl.tmLanguage.json`
-- конфигурация редактора в `language-configuration.json`
-- регистрация языка в `package.json`
-- управляемая палитра XBSL для `dark` и `light` схем VS Code
-- пример файла в `examples/hello.xbsl`
+Расширение VS Code для подсветки синтаксиса языка 1С:Элемент (`.xbsl`).
 
 ## Как запустить
 
-1. Откройте эту папку в VS Code.
-2. Нажмите `F5`, чтобы запустить Extension Development Host.
-3. Откройте `examples/hello.xbsl`.
-4. Проверьте токены через `Developer: Inspect Editor Tokens and Scopes`.
-5. Для проверки автоподстройки переключайте обычные темы VS Code между `dark` и `light`.
+Для установки:
+
+1. Откройте страницу [Releases](https://github.com/avolkov-git/element-lang-vscode/releases).
+2. Скачайте последний файл `.vsix`.
+3. В VS Code выполните `Extensions: Install from VSIX...`.
+4. Выберите скачанный `.vsix`.
+
+Для разработки:
+
+1. Откройте проект в VS Code.
+2. Нажмите `F5`, чтобы запустить `Extension Development Host`.
+3. В новом окне откройте [examples/hello.xbsl](/Users/aleksandrvolkov/pet-project/element-ai/element-lang-vscode/examples/hello.xbsl).
+4. Для проверки токенов используйте `Developer: Inspect Editor Tokens and Scopes`.
+5. Для проверки автопереключения меняйте обычную тему VS Code между светлой и темной.
 
 ## Как работает палитра
 
-Расширение не переключает `workbench.colorTheme`. Вместо этого оно:
+Расширение не переключает `workbench.colorTheme`. Вместо этого оно определяет текущий тип темы VS Code и подмешивает свои `textMateRules` для XBSL поверх активной темы.
 
-- смотрит на текущий тип темы VS Code (`dark` / `light`)
-- выбирает соответствующую XBSL-палитру
-- подмешивает только свои `textMateRules` в user-level `editor.tokenColorCustomizations` для активной темы
+По умолчанию используется режим `auto`:
 
-По умолчанию работает режим `auto`.
+- при светлой теме VS Code включается светлая XBSL-палитра
+- при темной теме VS Code включается темная XBSL-палитра
 
-Можно вручную переопределить поведение:
+При необходимости поведение можно переопределить:
 
-- команда `XBSL: Use Automatic Syntax Palette`
-- команда `XBSL: Use Dark Syntax Palette`
-- команда `XBSL: Use Light Syntax Palette`
-- команда `XBSL: Disable Managed Syntax Palette`
+- `XBSL: Use Automatic Syntax Palette`
+- `XBSL: Use Dark Syntax Palette`
+- `XBSL: Use Light Syntax Palette`
+- `XBSL: Disable Managed Syntax Palette`
 
 Или через настройку:
 
@@ -43,26 +43,3 @@
 - `xbsl.syntaxPalette.mode = off`
 
 Это позволяет, например, оставить светлую тему VS Code, но принудительно использовать темную XBSL-палитру.
-
-## Что настраивать дальше
-
-В `package.json`:
-
-- `contributes.languages[0].extensions`, когда будете добавлять другие типы файлов, например YAML
-- `displayName`, `description`, `publisher`
-- команды и режим `xbsl.syntaxPalette.mode`, если захотите переименовать или расширить поведение overlay
-
-В `syntaxes/xbsl.tmLanguage.json`:
-
-- заменить стартовые XBSL-ключевые слова на точный синтаксис вашего диалекта
-- скорректировать правила комментариев и строк, если они отличаются
-- добавить language-specific конструкции: аннотации, дженерики, интерполяцию, атрибуты и т.д.
-
-## Следующие шаги
-
-После стабилизации XBSL-подсветки можно добавить:
-
-- snippets
-- более точные правила отступов и парных скобок
-- поддержку YAML как второго языка в том же extension
-- language server или semantic tokens, если нужна более богатая поддержка
