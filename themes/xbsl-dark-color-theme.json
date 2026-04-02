@@ -1,0 +1,122 @@
+{
+  "name": "XBSL Dark",
+  "type": "dark",
+  "semanticHighlighting": false,
+  "colors": {
+    "editor.background": "#1f1f1f",
+    "editor.foreground": "#d4d4d4"
+  },
+  "tokenColors": [
+    {
+      "scope": [
+        "comment.line.double-slash.xbsl",
+        "comment.block.xbsl"
+      ],
+      "settings": {
+        "foreground": "#6E995C"
+      }
+    },
+    {
+      "scope": [
+        "entity.name.annotation.xbsl"
+      ],
+      "settings": {
+        "foreground": "#D38CD3"
+      }
+    },
+    {
+      "scope": [
+        "keyword.control.xbsl",
+        "keyword.control.import.xbsl",
+        "support.type.literal.xbsl"
+      ],
+      "settings": {
+        "foreground": "#D38CD3"
+      }
+    },
+    {
+      "scope": [
+        "storage.modifier.xbsl",
+        "storage.modifier.constant.xbsl",
+        "keyword.declaration.method.xbsl",
+        "keyword.declaration.type.xbsl",
+        "keyword.declaration.xbsl",
+        "keyword.control.query.xbql",
+        "keyword.other.query.literal.xbsl"
+      ],
+      "settings": {
+        "foreground": "#66B3FF"
+      }
+    },
+    {
+      "scope": [
+        "variable.other.definition.xbsl",
+        "constant.language.xbsl"
+      ],
+      "settings": {
+        "foreground": "#9CCFFA"
+      }
+    },
+    {
+      "scope": [
+        "entity.name.function.xbsl",
+        "support.function.aggregate.xbql"
+      ],
+      "settings": {
+        "foreground": "#D9D39A"
+      }
+    },
+    {
+      "scope": [
+        "support.type.xbsl",
+        "entity.name.namespace.xbsl",
+        "entity.name.type.xbsl",
+        "entity.name.query.xbql"
+      ],
+      "settings": {
+        "foreground": "#4FD4C8"
+      }
+    },
+    {
+      "scope": [
+        "string.quoted.double.xbsl"
+      ],
+      "settings": {
+        "foreground": "#D7A07A"
+      }
+    },
+    {
+      "scope": [
+        "variable.interpolation.xbsl",
+        "variable.parameter.query.xbql"
+      ],
+      "settings": {
+        "foreground": "#9CCFFA"
+      }
+    },
+    {
+      "scope": [
+        "constant.numeric.xbsl"
+      ],
+      "settings": {
+        "foreground": "#9FCB8F"
+      }
+    },
+    {
+      "scope": [
+        "punctuation.section.group.xbsl"
+      ],
+      "settings": {
+        "foreground": "#FFD84D"
+      }
+    },
+    {
+      "scope": [
+        "punctuation.terminator.statement.xbsl"
+      ],
+      "settings": {
+        "foreground": "#66B3FF"
+      }
+    }
+  ]
+}

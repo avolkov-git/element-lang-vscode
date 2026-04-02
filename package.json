@@ -5,9 +5,18 @@
   "version": "0.0.1",
   "publisher": "local",
   "license": "UNLICENSED",
+  "main": "./extension.js",
   "engines": {
     "vscode": "^1.85.0"
   },
+  "activationEvents": [
+    "onStartupFinished",
+    "onLanguage:xbsl",
+    "onCommand:xbsl.syntaxPalette.useAuto",
+    "onCommand:xbsl.syntaxPalette.useDark",
+    "onCommand:xbsl.syntaxPalette.useLight",
+    "onCommand:xbsl.syntaxPalette.disable"
+  ],
   "categories": [
     "Programming Languages"
   ],
@@ -32,6 +41,40 @@
         "scopeName": "source.xbsl",
         "path": "./syntaxes/xbsl.tmLanguage.json"
       }
-    ]
+    ],
+    "commands": [
+      {
+        "command": "xbsl.syntaxPalette.useAuto",
+        "title": "XBSL: Use Automatic Syntax Palette"
+      },
+      {
+        "command": "xbsl.syntaxPalette.useDark",
+        "title": "XBSL: Use Dark Syntax Palette"
+      },
+      {
+        "command": "xbsl.syntaxPalette.useLight",
+        "title": "XBSL: Use Light Syntax Palette"
+      },
+      {
+        "command": "xbsl.syntaxPalette.disable",
+        "title": "XBSL: Disable Managed Syntax Palette"
+      }
+    ],
+    "configuration": {
+      "title": "XBSL",
+      "properties": {
+        "xbsl.syntaxPalette.mode": {
+          "type": "string",
+          "enum": [
+            "auto",
+            "dark",
+            "light",
+            "off"
+          ],
+          "default": "auto",
+          "markdownDescription": "Controls which XBSL syntax palette is applied to the current VS Code color theme. `auto` follows the active theme kind, `dark` and `light` force a palette, `off` removes the managed XBSL overlay."
+        }
+      }
+    }
   }
 }
