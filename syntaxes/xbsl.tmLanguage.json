@@ -6,16 +6,40 @@
       "include": "#comments"
     },
     {
+      "include": "#query-block"
+    },
+    {
       "include": "#strings"
     },
     {
+      "include": "#typed-literals"
+    },
+    {
+      "include": "#annotations"
+    },
+    {
+      "include": "#imports"
+    },
+    {
+      "include": "#method-declarations"
+    },
+    {
+      "include": "#type-declarations"
+    },
+    {
+      "include": "#constant-declarations"
+    },
+    {
+      "include": "#variable-declarations"
+    },
+    {
+      "include": "#builtin-types"
+    },
+    {
+      "include": "#type-contexts"
+    },
+    {
       "include": "#keywords"
-    },
-    {
-      "include": "#declarations"
-    },
-    {
-      "include": "#types"
     },
     {
       "include": "#constants"
@@ -25,6 +49,9 @@
     },
     {
       "include": "#operators"
+    },
+    {
+      "include": "#punctuation"
     }
   ],
   "repository": {
@@ -41,65 +68,157 @@
         }
       ]
     },
+    "query-block": {
+      "patterns": [
+        {
+          "name": "meta.embedded.block.query.xbsl",
+          "begin": "\\b(Запрос)(\\s*)(\\{)",
+          "beginCaptures": {
+            "1": {
+              "name": "keyword.other.query.literal.xbsl"
+            },
+            "3": {
+              "name": "punctuation.section.braces.begin.xbsl"
+            }
+          },
+          "end": "(\\})",
+          "endCaptures": {
+            "1": {
+              "name": "punctuation.section.braces.end.xbsl"
+            }
+          },
+          "patterns": [
+            {
+              "include": "#comments"
+            },
+            {
+              "name": "variable.parameter.query.xbql",
+              "match": "%(?:\\{[^}]+\\}|[\\p{L}_][\\p{L}\\p{N}_.]*)"
+            },
+            {
+              "name": "support.function.aggregate.xbql",
+              "match": "\\b(КОЛИЧЕСТВО|СУММА|МАКСИМУМ|МИНИМУМ|СРЕДНЕЕ)\\b"
+            },
+            {
+              "name": "keyword.control.query.xbql",
+              "match": "\\b(ВЫБРАТЬ|ИЗ|ГДЕ|КАК|МЕЖДУ|И|ИЛИ|НЕ|ПО|УПОРЯДОЧИТЬ|ВОЗР|УБЫВ|СГРУППИРОВАТЬ|ИМЕЮЩИЕ|ОБЪЕДИНИТЬ|ВСЕ|ПЕРВЫЕ|РАЗЛИЧНЫЕ|ЛЕВОЕ|ПРАВОЕ|ВНУТРЕННЕЕ|СОЕДИНЕНИЕ)\\b"
+            },
+            {
+              "name": "entity.name.query.xbql",
+              "match": "\\b[\\p{Lu}][\\p{L}\\p{N}_]*(?:\\.[\\p{Lu}][\\p{L}\\p{N}_]*)*\\b"
+            },
+            {
+              "include": "#strings"
+            },
+            {
+              "include": "#numbers"
+            },
+            {
+              "include": "#operators"
+            },
+            {
+              "include": "#punctuation"
+            }
+          ]
+        }
+      ]
+    },
     "strings": {
       "patterns": [
         {
           "name": "string.quoted.double.xbsl",
           "begin": "\"",
-          "end": "\"",
-          "patterns": [
-            {
-              "name": "constant.character.escape.xbsl",
-              "match": "\\\\."
+          "beginCaptures": {
+            "0": {
+              "name": "punctuation.definition.string.begin.xbsl"
             }
-          ]
-        },
-        {
-          "name": "string.quoted.single.xbsl",
-          "begin": "'",
-          "end": "'",
+          },
+          "end": "\"",
+          "endCaptures": {
+            "0": {
+              "name": "punctuation.definition.string.end.xbsl"
+            }
+          },
           "patterns": [
             {
               "name": "constant.character.escape.xbsl",
               "match": "\\\\."
+            },
+            {
+              "name": "variable.interpolation.xbsl",
+              "match": "(?:%|\\$)(?:\\{[^}]+\\}|[\\p{L}_][\\p{L}\\p{N}_.]*)"
             }
           ]
         }
       ]
     },
-    "keywords": {
+    "typed-literals": {
       "patterns": [
         {
-          "name": "keyword.control.xbsl",
-          "match": "\\b(Если|Иначе|ИначеЕсли|Тогда|Для|Каждого|Из|Пока|Цикл|Прервать|Продолжить|Возврат|Попытка|Исключение|КонецПопытки)\\b"
-        },
-        {
-          "name": "storage.modifier.xbsl",
-          "match": "\\b(Экспорт|Знач|Перем|Асинх|Статический)\\b"
-        },
-        {
-          "name": "keyword.declaration.xbsl",
-          "match": "\\b(Функция|Процедура|Перем|Новый|Неопределено)\\b"
+          "name": "meta.literal.typed.xbsl",
+          "match": "\\b(Ресурс|Байты|Версия|Время|Дата|ДатаВремя|Длительность|Момент|Тип|Ууид)(\\{)([^}]*)(\\})",
+          "captures": {
+            "1": {
+              "name": "support.type.literal.xbsl"
+            },
+            "2": {
+              "name": "punctuation.section.braces.begin.xbsl"
+            },
+            "3": {
+              "name": "string.unquoted.literal.xbsl"
+            },
+            "4": {
+              "name": "punctuation.section.braces.end.xbsl"
+            }
+          }
         }
       ]
     },
-    "declarations": {
+    "annotations": {
+      "patterns": [
+        {
+          "name": "entity.name.annotation.xbsl",
+          "match": "@[\\p{L}_][\\p{L}\\p{N}_]*"
+        }
+      ]
+    },
+    "imports": {
+      "patterns": [
+        {
+          "name": "meta.import.xbsl",
+          "match": "\\b(импорт)\\b\\s+((?:[\\p{L}_][\\p{L}\\p{N}_]*)(?:::(?:[\\p{L}_][\\p{L}\\p{N}_]*))+)",
+          "captures": {
+            "1": {
+              "name": "keyword.control.import.xbsl"
+            },
+            "2": {
+              "name": "entity.name.namespace.xbsl"
+            }
+          }
+        }
+      ]
+    },
+    "method-declarations": {
       "patterns": [
         {
           "name": "meta.function.xbsl",
-          "match": "\\b(Функция|Процедура)\\s+([A-Za-zА-Яа-я_][A-Za-zА-Яа-я0-9_]*)\\b",
+          "match": "\\b(метод)\\b\\s+([\\p{L}_][\\p{L}\\p{N}_]*)",
           "captures": {
             "1": {
-              "name": "keyword.declaration.function.xbsl"
+              "name": "keyword.declaration.method.xbsl"
             },
             "2": {
               "name": "entity.name.function.xbsl"
             }
           }
-        },
+        }
+      ]
+    },
+    "type-declarations": {
+      "patterns": [
         {
           "name": "meta.type.definition.xbsl",
-          "match": "\\b(Перечисление|Структура|Тип)\\s+([A-Za-zА-Яа-я_][A-Za-zА-Яа-я0-9_]*)\\b",
+          "match": "\\b(структура|перечисление|контракт)\\b\\s+([\\p{L}_][\\p{L}\\p{N}_]*)",
           "captures": {
             "1": {
               "name": "keyword.declaration.type.xbsl"
@@ -111,15 +230,177 @@
         }
       ]
     },
-    "types": {
+    "constant-declarations": {
       "patterns": [
         {
-          "name": "support.type.primitive.xbsl",
-          "match": "\\b(Строка|Число|Булево|Дата|Массив|Структура|Соответствие)\\b"
+          "name": "meta.constant.definition.xbsl",
+          "match": "\\b(конст)\\b\\s+([A-ZА-ЯЁ][A-ZА-ЯЁ0-9_]*)(\\s*:\\s*)((?:Авто|ничто|[\\p{L}_][\\p{L}\\p{N}_]*)(?:(?:::|\\.)[\\p{L}_][\\p{L}\\p{N}_]*)*(?:\\?)?)",
+          "captures": {
+            "1": {
+              "name": "storage.modifier.constant.xbsl"
+            },
+            "2": {
+              "name": "variable.other.definition.xbsl"
+            },
+            "3": {
+              "name": "punctuation.separator.type.xbsl"
+            },
+            "4": {
+              "name": "support.type.xbsl"
+            }
+          }
         },
         {
-          "name": "entity.name.type.xbsl",
-          "match": "\\b[А-ЯA-Z][A-Za-zА-Яа-я0-9_]*\\b"
+          "name": "meta.constant.definition.xbsl",
+          "match": "\\b(конст)\\b\\s+([A-ZА-ЯЁ][A-ZА-ЯЁ0-9_]*)",
+          "captures": {
+            "1": {
+              "name": "storage.modifier.constant.xbsl"
+            },
+            "2": {
+              "name": "variable.other.definition.xbsl"
+            }
+          }
+        }
+      ]
+    },
+    "variable-declarations": {
+      "patterns": [
+        {
+          "name": "meta.variable.definition.xbsl",
+          "match": "\\b((?:(?:обз|пер|знч|исп)\\b\\s+)+)([\\p{L}_][\\p{L}\\p{N}_]*)(\\s*:\\s*)((?:Авто|ничто|[\\p{L}_][\\p{L}\\p{N}_]*)(?:(?:::|\\.)[\\p{L}_][\\p{L}\\p{N}_]*)*(?:\\?)?)",
+          "captures": {
+            "1": {
+              "name": "storage.modifier.xbsl"
+            },
+            "2": {
+              "name": "variable.other.definition.xbsl"
+            },
+            "3": {
+              "name": "punctuation.separator.type.xbsl"
+            },
+            "4": {
+              "name": "support.type.xbsl"
+            }
+          }
+        },
+        {
+          "name": "meta.variable.definition.xbsl",
+          "match": "\\b((?:(?:обз|пер|знч|исп)\\b\\s+)+)([\\p{L}_][\\p{L}\\p{N}_]*)",
+          "captures": {
+            "1": {
+              "name": "storage.modifier.xbsl"
+            },
+            "2": {
+              "name": "variable.other.definition.xbsl"
+            }
+          }
+        }
+      ]
+    },
+    "builtin-types": {
+      "patterns": [
+        {
+          "name": "support.type.xbsl",
+          "match": "\\b(ничто)\\b"
+        }
+      ]
+    },
+    "type-contexts": {
+      "patterns": [
+        {
+          "name": "meta.type.instantiation.xbsl",
+          "match": "\\b(новый)\\b\\s+((?:[\\p{L}_][\\p{L}\\p{N}_]*)(?:(?:::|\\.)[\\p{L}_][\\p{L}\\p{N}_]*)*(?:\\?)?)",
+          "captures": {
+            "1": {
+              "name": "keyword.control.xbsl"
+            },
+            "2": {
+              "name": "support.type.xbsl"
+            }
+          }
+        },
+        {
+          "name": "meta.type.annotation.parameter.xbsl",
+          "match": "([\\p{L}_][\\p{L}\\p{N}_]*)(\\s*:\\s*)((?:Авто|ничто|[\\p{L}_][\\p{L}\\p{N}_]*)(?:(?:::|\\.)[\\p{L}_][\\p{L}\\p{N}_]*)*(?:\\?)?)",
+          "captures": {
+            "1": {
+              "name": "variable.other.readwrite.xbsl"
+            },
+            "2": {
+              "name": "punctuation.separator.type.xbsl"
+            },
+            "3": {
+              "name": "support.type.xbsl"
+            }
+          }
+        },
+        {
+          "name": "meta.type.annotation.return.xbsl",
+          "match": "(\\))(\\s*:\\s*)((?:Авто|ничто|[\\p{L}_][\\p{L}\\p{N}_]*)(?:(?:::|\\.)[\\p{L}_][\\p{L}\\p{N}_]*)*(?:\\?)?)",
+          "captures": {
+            "1": {
+              "name": "punctuation.section.group.xbsl"
+            },
+            "2": {
+              "name": "punctuation.separator.type.xbsl"
+            },
+            "3": {
+              "name": "support.type.xbsl"
+            }
+          }
+        },
+        {
+          "name": "meta.type.nested.xbsl",
+          "match": "([<|])(\\s*)((?:Авто|ничто|[\\p{L}_][\\p{L}\\p{N}_]*)(?:(?:::|\\.)[\\p{L}_][\\p{L}\\p{N}_]*)*(?:\\?)?)",
+          "captures": {
+            "1": {
+              "name": "punctuation.separator.type.xbsl"
+            },
+            "3": {
+              "name": "support.type.xbsl"
+            }
+          }
+        },
+        {
+          "name": "meta.type.check.xbsl",
+          "match": "\\b(как|это)\\b\\s+((?:Авто|ничто|[\\p{L}_][\\p{L}\\p{N}_]*)(?:(?:::|\\.)[\\p{L}_][\\p{L}\\p{N}_]*)*(?:\\?)?)",
+          "captures": {
+            "1": {
+              "name": "keyword.control.xbsl"
+            },
+            "2": {
+              "name": "support.type.xbsl"
+            }
+          }
+        },
+        {
+          "name": "meta.type.function-result.xbsl",
+          "match": "(->)(\\s*)((?:Авто|ничто|[\\p{L}_][\\p{L}\\p{N}_]*)(?:(?:::|\\.)[\\p{L}_][\\p{L}\\p{N}_]*)*(?:\\?)?)",
+          "captures": {
+            "1": {
+              "name": "keyword.operator.xbsl"
+            },
+            "3": {
+              "name": "support.type.xbsl"
+            }
+          }
+        }
+      ]
+    },
+    "keywords": {
+      "patterns": [
+        {
+          "name": "keyword.control.xbsl",
+          "match": "\\b(абстрактный|импорт|иначе\\s+если|если|иначе|пока|для|по|из|до|попытка|поймать|выбросить|возврат|не|и|или|как|это|когда|выбор|новый)\\b"
+        },
+        {
+          "name": "storage.modifier.xbsl",
+          "match": "\\b(пер|знч|обз|исп|конст|статический)\\b"
+        },
+        {
+          "name": "keyword.declaration.xbsl",
+          "match": "\\b(метод|структура|перечисление|контракт)\\b"
         }
       ]
     },
@@ -127,11 +408,7 @@
       "patterns": [
         {
           "name": "constant.language.xbsl",
-          "match": "\\b(Истина|Ложь|Неопределено|Null)\\b"
-        },
-        {
-          "name": "constant.other.uppercase.xbsl",
-          "match": "\\b[А-ЯA-Z][А-ЯA-Z0-9_]+\\b"
+          "match": "\\b(Истина|Ложь|Неопределено)\\b"
         }
       ]
     },
@@ -139,7 +416,7 @@
       "patterns": [
         {
           "name": "constant.numeric.xbsl",
-          "match": "\\b(?:0x[0-9A-Fa-f_]+|0b[01_]+|\\d+(?:_\\d+)*(?:\\.\\d+(?:_\\d+)*)?)\\b"
+          "match": "\\b\\d+(?:_\\d+)*(?:\\.\\d+(?:_\\d+)*)?\\b"
         }
       ]
     },
@@ -147,7 +424,19 @@
       "patterns": [
         {
           "name": "keyword.operator.xbsl",
-          "match": "(?:[-+/*%=!<>|&^~?:]+|\\b(И|Или|Не)\\b)"
+          "match": "(?:==|!=|<=|>=|->|=>|[+\\-*/%=<>]+|\\?|:)"
+        }
+      ]
+    },
+    "punctuation": {
+      "patterns": [
+        {
+          "name": "punctuation.section.group.xbsl",
+          "match": "[()\\[\\]{}]"
+        },
+        {
+          "name": "punctuation.terminator.statement.xbsl",
+          "match": ";"
         }
       ]
     }
