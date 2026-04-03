@@ -2,15 +2,6 @@
 
 Расширение Visual Studio Code для подсветки синтаксиса языка 1С:Элемент (.xbsl)
 
-## Как запустить
-
-Для установки:
-
-1. Откройте страницу [Releases](https://github.com/avolkov-git/element-lang-vscode/releases).
-2. Скачайте последний файл `.vsix`.
-3. В VS Code выполните `Extensions: Install from VSIX...`.
-4. Выберите скачанный `.vsix`.
-
 ## Как работает палитра
 
 Расширение не переключает `workbench.colorTheme`. Вместо этого оно определяет текущий тип темы VS Code и подмешивает свои `textMateRules` для XBSL поверх активной темы.
