@@ -1,6 +1,6 @@
-# element-lang-vscode
+# 1C:Element Language Support (XBSL)
 
-Расширение VS Code для подсветки синтаксиса языка 1С:Элемент (`.xbsl`).
+Расширение Visual Studio Code для подсветки синтаксиса языка 1С:Элемент (.xbsl)
 
 ## Как запустить
 
