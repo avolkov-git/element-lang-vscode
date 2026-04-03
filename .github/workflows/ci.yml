@@ -19,5 +19,8 @@ jobs:
         with:
           node-version: 20
 
+      - name: Install VSCE
+        run: npm install --global @vscode/vsce
+
       - name: Package extension
-        run: npm exec --yes @vscode/vsce package --out 1c-element-${{ github.sha }}.vsix
+        run: vsce package --out 1c-element-${{ github.sha }}.vsix
