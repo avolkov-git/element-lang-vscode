@@ -11,14 +11,6 @@
 3. В VS Code выполните `Extensions: Install from VSIX...`.
 4. Выберите скачанный `.vsix`.
 
-Для разработки:
-
-1. Откройте проект в VS Code.
-2. Нажмите `F5`, чтобы запустить `Extension Development Host`.
-3. В новом окне откройте [examples/hello.xbsl](/Users/aleksandrvolkov/pet-project/element-ai/element-lang-vscode/examples/hello.xbsl).
-4. Для проверки токенов используйте `Developer: Inspect Editor Tokens and Scopes`.
-5. Для проверки автопереключения меняйте обычную тему VS Code между светлой и темной.
-
 ## Как работает палитра
 
 Расширение не переключает `workbench.colorTheme`. Вместо этого оно определяет текущий тип темы VS Code и подмешивает свои `textMateRules` для XBSL поверх активной темы.
