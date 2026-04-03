@@ -21,8 +21,8 @@ jobs:
         with:
           node-version: 20
 
-      - name: Install VSCE
-        run: npm install --global @vscode/vsce
+      - name: Install publishing tools
+        run: npm install --global @vscode/vsce ovsx
 
       - name: Verify tag matches package version
         id: version
@@ -37,6 +37,26 @@ jobs:
 
       - name: Package extension
         run: vsce package --out "${{ steps.version.outputs.vsix_name }}"
+
+      - name: Publish to Visual Studio Marketplace
+        env:
+          VSCE_PAT: ${{ secrets.VSCE_PAT }}
+        run: |
+          if [ -z "$VSCE_PAT" ]; then
+            echo "Missing VSCE_PAT secret"
+            exit 1
+          fi
+          vsce publish -p "$VSCE_PAT"
+
+      - name: Publish to Open VSX
+        env:
+          OVSX_PAT: ${{ secrets.OVSX_PAT }}
+        run: |
+          if [ -z "$OVSX_PAT" ]; then
+            echo "Missing OVSX_PAT secret"
+            exit 1
+          fi
+          ovsx publish "${{ steps.version.outputs.vsix_name }}" -p "$OVSX_PAT"
 
       - name: Create GitHub release
         uses: softprops/action-gh-release@v2

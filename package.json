@@ -2,9 +2,10 @@
   "name": "1c-element",
   "displayName": "1C:Element Language Support",
   "description": "Syntax highlighting and basic language configuration for 1C:Element XBSL files.",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "publisher": "avolkov-git",
-  "license": "UNLICENSED",
+  "icon": "assets/icon.png",
+  "license": "MIT",
   "main": "./extension.js",
   "repository": {
     "type": "git",
@@ -30,6 +31,15 @@
   ],
   "categories": [
     "Programming Languages"
+  ],
+  "keywords": [
+    "1С: Элемент",
+    "1С: Предприятие",
+    "1C: Element",
+    "1C: Enterprise",
+    "1С",
+    "XBSL",
+    "Syntax highlighting"
   ],
   "contributes": {
     "languages": [

@@ -18,6 +18,14 @@
     },
     {
       "scope": [
+        "keyword.codetag.todo.xbsl"
+      ],
+      "settings": {
+        "foreground": "#66B3FF"
+      }
+    },
+    {
+      "scope": [
         "entity.name.annotation.xbsl"
       ],
       "settings": {
@@ -80,6 +88,7 @@
     },
     {
       "scope": [
+        "string.quoted.single.xbsl",
         "string.quoted.double.xbsl"
       ],
       "settings": {
