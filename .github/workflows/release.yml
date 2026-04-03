@@ -38,6 +38,12 @@ jobs:
       - name: Package extension
         run: vsce package --out "${{ steps.version.outputs.vsix_name }}"
 
+      - name: Create GitHub release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: ${{ steps.version.outputs.vsix_name }}
+          generate_release_notes: true
+
       - name: Publish to Visual Studio Marketplace
         env:
           VSCE_PAT: ${{ secrets.VSCE_PAT }}
@@ -57,9 +63,3 @@ jobs:
             exit 1
           fi
           ovsx publish "${{ steps.version.outputs.vsix_name }}" -p "$OVSX_PAT"
-
-      - name: Create GitHub release
-        uses: softprops/action-gh-release@v2
-        with:
-          files: ${{ steps.version.outputs.vsix_name }}
-          generate_release_notes: true
